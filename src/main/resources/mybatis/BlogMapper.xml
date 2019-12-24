@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fastech.dao.BlogDAO">
+	
+	<select id="getBolgByUid" resultType="com.fastech.entity.Blog">
+		select * from t_blog where uid=#{uid}
+	</select>
+	
+	<select id="getBolgById" resultType="com.fastech.entity.vo.BlogVO">
+		select t1.*,t2.username,t3.dicvalue blogthemevo from t_blog  t1 LEFT JOIN t_user t2 on t1.uid=t2.id
+		LEFT JOIN (SELECT * from t_blog_dictionary WHERE type='blogtheme') t3 ON t3.dickey=t1.blogtheme
+		where t1.id=#{id}
+	</select>
+
+	<insert id="insertBlog" parameterType="com.fastech.entity.Blog">
+        insert t_blog (id,uid,blogname,blogtheme,blogcontent,blogsign,createtime,updatetime) values
+       (#{id,jdbcType=VARCHAR},#{uid,jdbcType=VARCHAR},#{blogname,jdbcType=VARCHAR},#{blogtheme,jdbcType=NUMERIC},
+       	#{blogcontent,jdbcType=VARCHAR},#{blogsign,jdbcType=NUMERIC},#{createtime, jdbcType=TIMESTAMP},
+       	#{updatetime, jdbcType=TIMESTAMP})
+    </insert>
+    
+    <select id="getBlogs" resultType="com.fastech.entity.vo.BlogVO" parameterType="com.fastech.entity.vo.PageVO">
+		SELECT
+			t1.*, t2.username,
+			t3.dicvalue blogthemevo
+		FROM
+			t_blog t1
+		LEFT JOIN t_user t2 ON t1.uid = t2.id
+		LEFT JOIN (
+			SELECT
+				*
+			FROM
+				t_blog_dictionary
+			WHERE
+				type = 'blogtheme'
+		) t3 ON t3. dickey = t1.blogtheme
+		WHERE
+			1 = 1
+		<if test="obj.blogname !=null and obj.blogname !=''">
+			AND t1.blogname like concat('%',#{obj.blogname},'%')
+		</if>
+		<if test="obj.blogtheme !=null or obj.blogtheme ==0">
+			AND t1.blogtheme = #{obj.blogtheme}
+		</if>
+		ORDER BY updatetime DESC limit #{pageNo}, #{pageSize}
+	</select>
+	
+	<select id="getPersonBlogs" resultType="com.fastech.entity.vo.BlogVO" parameterType="com.fastech.entity.vo.PageVO">
+		select t1.*,t2.username,t3.dicvalue blogthemevo from t_blog  t1 LEFT JOIN t_user t2 on t1.uid=t2.id 
+		LEFT JOIN (SELECT * from t_blog_dictionary WHERE type='blogtheme') t3 ON t3.dickey=t1.blogtheme where t1.uid=#{obj.uid}
+		<if test="obj.blogname !=null and obj.blogname !=''">
+			AND t1.blogname like concat('%',#{obj.blogname},'%')
+		</if>
+		<if test="obj.blogtheme !=null or obj.blogtheme ==0">
+			AND t1.blogtheme = #{obj.blogtheme}
+		</if>
+		ORDER BY updatetime DESC limit #{pageNo}, #{pageSize}
+	</select>
+	
+	<select id="queryCounts" resultType="Integer" parameterType="com.fastech.entity.vo.PageVO">
+		SELECT COUNT(*) FROM
+			t_blog t1
+		LEFT JOIN t_user t2 ON t1.uid = t2.id
+		LEFT JOIN (
+			SELECT
+				* 
+			FROM
+				t_blog_dictionary
+			WHERE
+				type = 'blogtheme'
+		) t3 ON t3. dickey = t1.blogtheme
+		WHERE
+			1 = 1
+		<if test="obj.blogname !=null and obj.blogname !=''">
+			AND t1.blogname like concat('%',#{obj.blogname},'%')
+		</if>
+		<if test="obj.blogtheme !=null or obj.blogtheme ==0">
+			AND t1.blogtheme = #{obj.blogtheme}
+		</if>
+	</select>
+	
+	<select id="queryPersonCounts" resultType="Integer" parameterType="com.fastech.entity.vo.PageVO">
+		SELECT COUNT(*) FROM t_blog t1 LEFT JOIN t_user t2 on t1.uid=t2.id
+		LEFT JOIN (SELECT * from t_blog_dictionary WHERE type='blogtheme') t3 ON t3.dickey=t1.blogtheme
+		 where t1.uid=#{obj.uid}
+		 <if test="obj.blogname !=null and obj.blogname !=''">
+			AND t1.blogname like concat('%',#{obj.blogname},'%')
+		</if>
+		<if test="obj.blogtheme !=null or obj.blogtheme ==0">
+			AND t1.blogtheme = #{obj.blogtheme}
+		</if>
+	</select>
+	
+</mapper>
