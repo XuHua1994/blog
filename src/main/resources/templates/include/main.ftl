@@ -11,10 +11,16 @@
 <body class="easyui-layout">
 	<!--  页面上方区域     -->
 		<div region="north" split="true" style="height:60px;width:100%;font-size: 26px;padding: 8px;background-color: #D1EEEE">
-			<div><span>
-					<a style="margin-left: 30px;">私人博客</a>
-					<button style="margin-left: 1200px;" id="exit">退出</button>
-				</span>
+			<div style="width:100%">
+				<div style="Float:left">
+                    <a style="margin-left: 30px;">博客</a>
+				</div>
+				<div style="Float:right">
+                    <button style="margin-right: 50px;" id="exit">退出</button>
+				</div>
+                <div style="Float:right">
+                    <button style="margin-right: 10px;" id="person">个人中心</button>
+                </div>
 			</div>
 		</div>
 		

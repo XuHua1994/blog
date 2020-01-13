@@ -10,12 +10,12 @@ public class MyHttpSessionListener implements HttpSessionListener {
     public void sessionCreated(HttpSessionEvent se) {
         System.out.println("创建session");
         online ++;
+        System.out.println("在线人数:"+online);
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
         System.out.println("销毁session");
-        
     }
     
     

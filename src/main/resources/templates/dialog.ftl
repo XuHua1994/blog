@@ -23,26 +23,18 @@
 
 
 <div class="easyui-layout" style="height: 90%;width: 90%; border: 1px;">
-    <div style="">
-        <button id="login"></button>
+    <div style="margin-top: 10px;">
+        <button id="login">重新登入</button>
     </div>
 </div>
 
 <script>
-//    $("#login").click(function(e){
-//        e.stopPropagation();
-//        window.top.location='/blogdemo/login';
-//    })
+    $("#login").click(function(e){
+        e.stopPropagation();
+        window.top.location='/blogdemo/login';
+    })
 
-    var detailLog= $('#login').dialog(
-            {
-                title: 'Session过期',
-                width: '280px',
-                height: '80px',
-                modal: true,
-                closable: true,
-                href: '/blogdemo/dialog'
-            })
+
 </script>
 
 </body>

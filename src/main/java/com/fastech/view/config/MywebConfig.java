@@ -20,7 +20,7 @@ public class MywebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new MyInterceptor()) 
-                .addPathPatterns("/admin/*");
+                .addPathPatterns("/admin/**");
     }
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Bean

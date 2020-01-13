@@ -18,4 +18,9 @@ public class LoginViewController {
 		return "loginout";
 	}
 
+	@RequestMapping(value = "/dialog", method = RequestMethod.GET)
+	public String dialog() {
+		return "dialog";
+	}
+
 }

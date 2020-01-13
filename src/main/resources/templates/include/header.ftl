@@ -7,8 +7,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>博客</title>
 
-<script type="text/javascript" src="../me/js/commonJs.js"></script>
-<script type="text/javascript" src="../me/js/commonCss.js"></script>
 </head>
 
 </html>

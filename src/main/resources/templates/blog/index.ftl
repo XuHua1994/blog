@@ -6,8 +6,8 @@
     <script type="text/javascript" src="../js/god/queryHbase.js"></script>
     <link rel="stylesheet" type="text/css" href="../easyui/themes/gray/easyui.css" />
     <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css" />
-	<script type="text/javascript" src="../js/layer/layer.js"></script>
 	<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="../js/layer/layer.js"></script>
 <style type="text/css">
 </style>
 </head>
@@ -151,10 +151,12 @@
 										
 										});
 									});
-								
-								
-								
-								}
+								},
+                                onLoadError: function(){
+                                    // ...
+                                    var d="1";
+
+                                },
 							});
 		}
 		

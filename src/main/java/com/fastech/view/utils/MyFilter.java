@@ -24,17 +24,12 @@ public class MyFilter implements Filter {
         System.out.println(request.getRequestURI());
         String url=request.getContextPath();
         String requestUrl=request.getRequestURI();
-		// 检查是否是登录页面
-//		if (requestUrl.equals(url+"/adminview/login")  || requestUrl.equals(url+"/adminview/register")
-//				|| requestUrl.equals(url+"/adminview/loginout")) {
-//			filterChain.doFilter(servletRequest, servletResponse);
-//		} else {
-			// 检测用户是否登录
+		// 检测用户是否登录
 		HttpSession session = request.getSession();
 		String status = (String) session.getAttribute("isLogin");
 		if (status == null || !status.equals("true")) {
 			try {
-				response.sendRedirect("/blogdemo/login");
+				response.sendRedirect("/blogdemo/loginout");
 				filterChain.doFilter(servletRequest, servletResponse);
 			} catch (Exception e) {
 				logger.error(e.getMessage());
@@ -42,8 +37,6 @@ public class MyFilter implements Filter {
 		}else {
 			filterChain.doFilter(servletRequest, servletResponse);
 		}
-			
-//		}
 	}
 
 	@Override
