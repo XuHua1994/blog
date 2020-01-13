@@ -1,21 +1,15 @@
 package com.fastech.view.utils;
 
-import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.Order;
+import java.io.IOException;
 
 @Order(1)
 @WebFilter(filterName = "MSecurity", urlPatterns = { "*.ftl" })
@@ -31,25 +25,25 @@ public class MyFilter implements Filter {
         String url=request.getContextPath();
         String requestUrl=request.getRequestURI();
 		// 检查是否是登录页面
-		if (requestUrl.equals(url+"/adminview/login")  || requestUrl.equals(url+"/adminview/register")
-				|| requestUrl.equals(url+"/adminview/loginout")) {
-			filterChain.doFilter(servletRequest, servletResponse);
-		} else {
+//		if (requestUrl.equals(url+"/adminview/login")  || requestUrl.equals(url+"/adminview/register")
+//				|| requestUrl.equals(url+"/adminview/loginout")) {
+//			filterChain.doFilter(servletRequest, servletResponse);
+//		} else {
 			// 检测用户是否登录
-			HttpSession session = request.getSession();
-			String status = (String) session.getAttribute("isLogin");
-			if (status == null || !status.equals("true")) {
-				try {
-					response.sendRedirect("loginout");
-					filterChain.doFilter(servletRequest, servletResponse);
-				} catch (Exception e) {
-					logger.error(e.getMessage());
-				}
-			}else {
+		HttpSession session = request.getSession();
+		String status = (String) session.getAttribute("isLogin");
+		if (status == null || !status.equals("true")) {
+			try {
+				response.sendRedirect("/blogdemo/login");
 				filterChain.doFilter(servletRequest, servletResponse);
+			} catch (Exception e) {
+				logger.error(e.getMessage());
 			}
-			
+		}else {
+			filterChain.doFilter(servletRequest, servletResponse);
 		}
+			
+//		}
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+import com.fastech.entity.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -114,44 +115,4 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
-	@Override
-	public Return loginUser(Map<String, String> inputMap, HttpServletRequest request) {
-		String username = inputMap.get("username");
-		String password = inputMap.get("password");
-		User user = userDao.getLoginUser(username, password);
-		if (user == null) {
-			return new Return(false, "用户名或者密码错误!");
-		} else {
-            HttpSession session =request.getSession(true);
-            session.setAttribute("user", user);
-            session.setAttribute("isLogin", "true");
-            session.setMaxInactiveInterval(10 * 60);
-			return new Return(true, "success");
-		}
-	}
-
-	@Override
-	public Return registerUser(Map<String, String> inputMap, HttpServletRequest request) {
-		User user =new User ();
-		String username = inputMap.get("username");
-		String password = inputMap.get("password");
-		if("".equals(username) || "".equals(password)){
-			return new Return(false,"用户名或密码不能为空!");
-		}
-		Timestamp time = TimeUtils.getTime();
-		user.setId(UUID.randomUUID().toString());
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setCreatetime(time);
-		user.setUpdatetime(time);
-		Integer sign=userDao.insertUser(user);
-		if(sign==1){
-            HttpSession session =request.getSession(true);
-            session.setAttribute("user", user);
-            session.setAttribute("isLogin", "true");
-            session.setMaxInactiveInterval(10 * 60);
-			return new Return(true,"创建成功!");
-		}
-		return new Return(false,"创建失败!");
-	}
 }

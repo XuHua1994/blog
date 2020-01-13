@@ -1,16 +1,14 @@
 package com.fastech.view.utils;
 
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSONObject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 public class MyInterceptor implements HandlerInterceptor {
 	private final Logger logger = LoggerFactory.getLogger(MyInterceptor.class);
@@ -22,24 +20,24 @@ public class MyInterceptor implements HandlerInterceptor {
 //		System.out.println("preHandle被调用");
 		String requestUrl=httpServletRequest.getRequestURI();
 		String url=httpServletRequest.getContextPath();
-		if (!requestUrl.equals(url+"/admin/user/getLogin") 
-				&& !requestUrl.equals(url+"/admin/user/getRegister")) {
-			String status = (String) httpServletRequest.getSession().getAttribute("isLogin");
-			if (status == null || !status.equals("true")) {
-	            HttpServletResponse httpResponse = (HttpServletResponse) httpServletResponse;
-	            httpServletResponse.setCharacterEncoding("UTF-8");
-	            httpServletResponse.setContentType("application/json; charset=utf-8");
-	            PrintWriter out = null;
-	            JSONObject res = new JSONObject();
-	            res.put("code", -1);
-                res.put("state", false);
-                res.put("msg", "当前的Session已过期，请重新登陆");
-                out = httpResponse.getWriter();
-                out.append(res.toString());
-                logger.info("当前的Session已过期，请重新登陆");
-				return false;
-			}
+//		if (!requestUrl.equals(url+"/admin/user/getLogin")
+//				&& !requestUrl.equals(url+"/admin/user/getRegister")) {
+		String status = (String) httpServletRequest.getSession().getAttribute("isLogin");
+		if (status == null || !status.equals("true")) {
+			HttpServletResponse httpResponse = (HttpServletResponse) httpServletResponse;
+			httpServletResponse.setCharacterEncoding("UTF-8");
+			httpServletResponse.setContentType("application/json; charset=utf-8");
+			PrintWriter out = null;
+			JSONObject res = new JSONObject();
+			res.put("code", -1);
+			res.put("state", false);
+			res.put("msg", "当前的Session已过期，请重新登陆");
+			out = httpResponse.getWriter();
+			out.append(res.toString());
+			logger.info("当前的Session已过期，请重新登陆");
+			return false;
 		}
+//		}
 		return true;
 	}
 

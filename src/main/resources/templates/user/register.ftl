@@ -79,7 +79,7 @@
         queryParams["username"]=$("#username").val();
         queryParams["password"]=$("#password").val();
         $.ajax({
-            url : '../admin/user/getRegister',
+            url : './login/getRegister',
             type : "POST",
             dataType : "json",
             data:queryParams,

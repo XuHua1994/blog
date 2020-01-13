@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/adminview")
 public class UserViewController {
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-
-		return "login";
-	}
-	
-	@RequestMapping(value = "/loginout", method = RequestMethod.GET)
-	public String loginout() {
-		return "loginout";
-	}
+//	@RequestMapping(value = "/login", method = RequestMethod.GET)
+//	public String login() {
+//
+//		return "login";
+//	}
+//
+//	@RequestMapping(value = "/loginout", method = RequestMethod.GET)
+//	public String loginout() {
+//		return "loginout";
+//	}
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {

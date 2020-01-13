@@ -79,10 +79,14 @@ public class BlogServiceImpl implements BlogService {
 		int pageNo = (page - 1) * pagesize;
 		int sign=Integer.valueOf(inputMap.get("sign").toString());
 		Blog bselect=new Blog();
-		bselect.setBlogname(inputMap.get("blogname").toString());
-		String bt=inputMap.get("blogtheme").toString();
-		if(!"".equals(bt)) {
-			bselect.setBlogtheme(Integer.valueOf(bt));
+		if (inputMap.get("blogname")!=null){
+			bselect.setBlogname(inputMap.get("blogname").toString());
+		}
+		if (inputMap.get("blogtheme")!=null){
+			String bt=inputMap.get("blogtheme").toString();
+			if(!"".equals(bt)) {
+				bselect.setBlogtheme(Integer.valueOf(bt));
+			}
 		}
 		bselect.setUid(inputMap.get("id").toString());
 		PageVO pagevo = new PageVO(pageNo, pagesize, bselect);

@@ -1,5 +1,8 @@
 <#include "/include/header.ftl">
 <html>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../js/god/queryHbase.js"></script>
 <link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css" />
@@ -32,7 +35,7 @@
     <script type="text/javascript">
     	$("#exit").click(function(e){
     		e.stopPropagation();
-    		window.location.href='login';
+    		window.location.href='/blogdemo/login';
     	})
 			
     </script>

@@ -101,14 +101,14 @@
         }
 
         $.ajax({
-            url : '../admin/user/getLogin',
+            url : './login/getLogin',
             type : "POST",
             dataType : "json",
             data:queryParams,
             cache : false,
             success : function(data) {
                 if(data.state){
-                    window.location.href='main';
+                    window.location.href='/blogdemo/adminview/main';
                 }else{
                     layer.alert(data.msg);
                 }
@@ -121,7 +121,7 @@
     }
 
     function getIndex() {
-        window.location.href='index';
+        window.location.href='/blogdemo/adminview/index';
     }
 
     function insertUser() {

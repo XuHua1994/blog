@@ -5,8 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>博客</title>
-<script type="text/javascript" src="../me/js/commonJs.js"></script>
-<script type="text/javascript" src="../me/js/commonCss.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/god/queryHbase.js"></script>
+    <link rel="stylesheet" type="text/css" href="../easyui/themes/gray/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css" />
+    <script type="text/javascript" src="../js/layer/layer.js"></script>
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon"/>
 <style type="text/css">
 </style>
 <body>

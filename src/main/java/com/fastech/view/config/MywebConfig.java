@@ -1,16 +1,14 @@
 package com.fastech.view.config;
 
+import com.fastech.view.utils.MyFilter;
+import com.fastech.view.utils.MyHttpSessionListener;
+import com.fastech.view.utils.MyInterceptor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import com.fastech.view.utils.MyFilter;
-import com.fastech.view.utils.MyHttpSessionListener;
-import com.fastech.view.utils.MyInterceptor;
 
 @Configuration
 public class MywebConfig implements WebMvcConfigurer {
@@ -22,7 +20,7 @@ public class MywebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new MyInterceptor()) 
-                .addPathPatterns("/admin/user/**"); 
+                .addPathPatterns("/admin/*");
     }
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Bean
@@ -30,7 +28,7 @@ public class MywebConfig implements WebMvcConfigurer {
         FilterRegistrationBean frBean = new FilterRegistrationBean();
         frBean.setFilter(new MyFilter());
         frBean.addUrlPatterns("/adminview/*");
-//        System.out.println("filter");
+        System.out.println("filter");
         return frBean;
     }
     @SuppressWarnings({ "rawtypes", "unchecked" })
