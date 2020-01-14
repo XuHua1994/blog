@@ -3,10 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>欢迎你，请先登陆！</title>
-    <script type="text/javascript" src="../static/jsp/lx.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/lx.css">
-
     <style type="text/css">
         *{
             margin: 0;
@@ -44,8 +40,9 @@
         }
     </style>
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-    <script  src="../js/layer/layer.js"></script>
-    <script type="text/javascript" src="../js/easyui/jquery.easyui.min.js"></script>
+    <script  src="/blogdemo/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/blogdemo/js/easyui/jquery.easyui.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -76,33 +73,33 @@
         queryParams["username"]=$("#username").val();
         queryParams["password"]=$("#password").val();
 
-        var oUname = document.getElementById("username")
-        var oUpass = document.getElementById("password")
-        var oError = document.getElementById("error_box")
-        var isError = true;
-        if (oUname.value.length > 20 || oUname.value.length < 3) {
-            oError.innerHTML = "用户名请输入3-20位字符";
-            isError = false;
-            return;
-        }else if((oUname.value.charCodeAt(0)>=48) && (oUname.value.charCodeAt(0)<=57)){
-            oError.innerHTML = "首字符必须为字母";
-            return;
-        }else for(var i=0;i<oUname.value.charCodeAt(i);i++){
-            if((oUname.value.charCodeAt(i)<48)||(oUname.value.charCodeAt(i)>57) && (oUname.value.charCodeAt(i)<97)||(oUname.value.charCodeAt(i)>122)){
-                oError.innerHTML = "必须为字母跟数字组成";
-                return;
-            }
-        }
-
-        if (oUpass.value.length > 20 || oUpass.value.length < 6) {
-            oError.innerHTML = "密码请输入6-20位字符"
-            isError = false;
-            return;
-        }
+//        var oUname = document.getElementById("username")
+//        var oUpass = document.getElementById("password")
+//        var oError = document.getElementById("error_box")
+//        var isError = true;
+//        if (oUname.value.length > 20 || oUname.value.length < 3) {
+//            oError.innerHTML = "用户名请输入3-20位字符";
+//            isError = false;
+//            return;
+//        }else if((oUname.value.charCodeAt(0)>=48) && (oUname.value.charCodeAt(0)<=57)){
+//            oError.innerHTML = "首字符必须为字母";
+//            return;
+//        }else for(var i=0;i<oUname.value.charCodeAt(i);i++){
+//            if((oUname.value.charCodeAt(i)<48)||(oUname.value.charCodeAt(i)>57) && (oUname.value.charCodeAt(i)<97)||(oUname.value.charCodeAt(i)>122)){
+//                oError.innerHTML = "必须为字母跟数字组成";
+//                return;
+//            }
+//        }
+//
+//        if (oUpass.value.length > 20 || oUpass.value.length < 6) {
+//            oError.innerHTML = "密码请输入6-20位字符"
+//            isError = false;
+//            return;
+//        }
 
         $.ajax({
-            url : './login/getLogin',
-            type : "POST",
+            url : './login/',
+            type : "GET",
             dataType : "json",
             data:queryParams,
             cache : false,

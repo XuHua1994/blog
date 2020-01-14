@@ -1,23 +1,23 @@
 package com.fastech.service;
 
 
-import java.util.Map;
-
 import com.fastech.base.NewReturn;
 import com.fastech.base.Return;
-import com.fastech.entity.User;
+import com.fastech.entity.Blog;
+import com.fastech.entity.vo.BlogViewVO;
+import com.fastech.entity.vo.RemarkViewVO;
 
 public interface BlogService {
 
 	Return getBolgByUid(String uid);
 
-	Return writeBlog(Map<String, Object> inputMap, User user);
+	Return writeBlog(Blog blog, String id);
 	
-	NewReturn getBlogs(Map<String, Object> inputMap);
+	NewReturn getBlogs(BlogViewVO blogViewVO);
 
-	Return getBlogById(Map<String, Object> inputMap);
+	Return getBlogById(String bid);
 
-	Return writeRemark(Map<String, Object> inputMap, User user);
+	Return writeRemark(RemarkViewVO remarkViewVO);
 
-	Return getRemarkById(Map<String, Object> inputMap);
+	Return getRemarkById(String bid);
 }

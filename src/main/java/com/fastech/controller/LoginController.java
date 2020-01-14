@@ -3,21 +3,18 @@ package com.fastech.controller;
 import com.fastech.base.CommonResult;
 import com.fastech.base.Return;
 import com.fastech.entity.User;
+import com.fastech.entity.vo.UserVO;
 import com.fastech.service.impl.LoginServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
-@Api(description = "用户接口")
+@Api(description = "登入接口")
 @RestController
 @RequestMapping(value = "/login")
 public class LoginController {
@@ -25,10 +22,10 @@ public class LoginController {
     @Autowired
     private LoginServiceImpl loginService;
 
-    @RequestMapping(value = "/getLogin",method = RequestMethod.POST)
-    public Return login(@RequestParam(required = false) Map<String, String> inputMap, HttpServletRequest request) {
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public Return login(@ModelAttribute UserVO userVO, HttpServletRequest request) {
 
-        return loginService.loginUser(inputMap, request);
+        return loginService.loginUser(userVO, request);
     }
 
 

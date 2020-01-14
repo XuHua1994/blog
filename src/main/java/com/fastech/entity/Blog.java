@@ -1,5 +1,7 @@
 package com.fastech.entity;
 
+import com.fastech.entity.vo.BlogViewVO;
+
 import java.sql.Timestamp;
 
 public class Blog {
@@ -74,6 +76,16 @@ public class Blog {
 
 	public void setUpdatetime(Timestamp updatetime) {
 		this.updatetime = updatetime;
+	}
+
+	public Blog(){
+
+	}
+
+	public Blog(BlogViewVO blogViewVO){
+		this.uid = blogViewVO.getUid();
+		this.blogname = blogViewVO.getBlogname();
+		this.blogtheme = blogViewVO.getBlogtheme();
 	}
 
 }

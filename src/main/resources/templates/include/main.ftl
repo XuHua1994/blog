@@ -3,9 +3,10 @@
 <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../js/god/queryHbase.js"></script>
-<link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css" />
-<link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css" />
+<script type="text/javascript" src="/blogdemo/js/god/queryHbase.js"></script>
+<link rel="stylesheet" type="text/css" href="/blogdemo/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="/blogdemo/easyui/themes/icon.css" />
+<script type="text/javascript" src="/blogdemo/js/layer/layer.js"></script>
 
 
 <body class="easyui-layout">
@@ -19,11 +20,14 @@
                     <button style="margin-right: 50px;" id="exit">退出</button>
 				</div>
                 <div style="Float:right">
-                    <button style="margin-right: 10px;" id="person">个人中心</button>
+                    <button style="margin-right: 10px;" id="user">个人中心</button>
                 </div>
 			</div>
 		</div>
-		
+    <#--<div style="display:none">-->
+    <div style="display:block">
+		<a id="userId">${Session.id}</a>
+    </div>
 	
     
     <!--  页面左边区域    -->
@@ -39,11 +43,26 @@
     	</div>
     </div>
     <script type="text/javascript">
+        var uid=${Session.id};
     	$("#exit").click(function(e){
     		e.stopPropagation();
     		window.location.href='/blogdemo/login';
     	})
-			
+
+
+        $("#user").click(function(e) {
+            e.stopPropagation();
+            layer.open({
+                type : 2,
+                title : '用户信息',
+                fix : false,
+                maxmin : true,
+                shadeClose : true,
+                content : 'user/user/' + uid,
+                area : [ '60%', '80%' ],
+
+            });
+        });
     </script>
 </body>
 </html>

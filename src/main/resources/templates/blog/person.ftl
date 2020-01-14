@@ -46,6 +46,7 @@
 	<script>
 		var $tableList = $("#table_list");
 		var $blogtheme = $("#blogtheme");
+        var uid=${Session.id};
 
 		$().ready(function() {
 			init_datagrid();
@@ -63,6 +64,8 @@
 			var queryParams = {};
 			queryParams["blogname"]=$("#blogname").val();
 			queryParams["blogtheme"]=$("#blogtheme").val();
+            queryParams["sign"]=1;
+            queryParams["uid"]=uid;
 			//默认第一页，
 			var pageNumber = 1;
 			//每页显示10行
@@ -71,8 +74,8 @@
 					.datagrid(
 							{
 								title : "个人中心",
-								url : '../admin/blog/getBlogs?sign=1',
-								method : 'get',
+								url : '../admin/blog/',
+								method : 'GET',
 								singleSelect : true,
 								remoteSort : true, //定义从服务器对数据进行排序。
 								pagination : true, //在DataGrid控件底部显示分页工具栏。

@@ -61,7 +61,8 @@
 		   return unescape(r[2]);
 		   return null;
 	}
-	var id=getUrlParameter("id");
+    var uid=${Session.id};
+	var bid=getUrlParameter("id");
 	
 		var $blogtheme = $("#blogtheme");
 		var $blogsign = $("#blogsign");
@@ -74,25 +75,24 @@
 			var html="请选择";
 			setOptions($blogsign,data,html);
 		});
-		if(id!=null){
-			edit(id);
+		if(bid!=null){
+			edit(bid);
 		}else{
 			$("#personStr").css("display","none");
 		}
 	})
 	
 	
-	function edit(id){
+	function edit(bid){
 		$("#person").css("display","block");
 		$("#remarkStr").css("display","block");
 		$("#blogsignStr").css("display","none");
 		
 		$.ajax({
-			url: '../admin/blog/getBlogById',
-			type: "POST",
+			url: '../admin/blog/'+bid,
+			type: "GET",
 			dataType: "json",
-			data: {id:id},
-			async:false,//同步请求      
+			async:false,//同步请求
 			success: function(data) {
 				var r=data.result[0];
 				$("#blogname").val(r.blogname);
@@ -130,16 +130,17 @@
 		function submit() {
 			var queryParams = {};
 			var url='';
-			if(id!=null){
+			if(bid!=null){
 				queryParams["remark"] = $("#remark").val();
-				queryParams["blogid"] = id;
-				url='../admin/blog/writeRemark';
+				queryParams["blogid"] = bid;
+                queryParams["remarkid"] = uid;
+				url='../admin/blog/remark';
 			}else{
 				queryParams["blogname"] = $("#blogname").val();
 				queryParams["blogtheme"] = $("#blogtheme").val();
 				queryParams["blogsign"] = $("#blogsign").val();
 				queryParams["blogcontent"] = $("#blogcontent").val();
-				url='../admin/blog/writeBlog';
+				url='../admin/blog/'+uid;
 			}
 			
 			

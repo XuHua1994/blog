@@ -1,5 +1,7 @@
 package com.fastech.entity;
 
+import com.fastech.entity.vo.RemarkViewVO;
+
 import java.sql.Timestamp;
 
 public class Remark {
@@ -38,5 +40,14 @@ public class Remark {
 	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
-	
+
+	public Remark(){
+
+	}
+
+	public Remark(RemarkViewVO remarkViewVO){
+		this.blogid = remarkViewVO.getBlogid();
+		this.remarkid = remarkViewVO.getRemarkid();
+		this.remark = remarkViewVO.getRemark();
+	}
 }

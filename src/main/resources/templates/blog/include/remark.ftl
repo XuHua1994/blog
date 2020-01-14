@@ -49,6 +49,7 @@
 		   return unescape(r[2]);
 		   return null;
 	}
+    var uid=${Session.id};
 	
 	$().ready(function(){
 		var blogid=getUrlParameter("blogid");
@@ -69,12 +70,11 @@
 		        i=i-1;
 		    } 
 			$.ajax({
-	 			type: 'POST',
-	 			url: '../admin/blog/getRemarkById',
+	 			type: 'GET',
+	 			url: '../admin/blog/remark/'+blogid,
 	 			dataType: "json",
 	 			cache:true,
 	 			async:false,
-	 			data: {blogid:blogid},
 				success: function (data) {
 					if(data.state == true){
 					//listSource为后台传过来的数组
