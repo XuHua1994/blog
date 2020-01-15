@@ -105,11 +105,10 @@
 	}
 		var getCode = function(type,callback){
 			$.ajax({
-				url: '../admin/dictionary/getDictionaryByType?',
-				type: "POST",
+				url: '../admin/dictionary/'+type,
+				type: "GET",
 				async: false,//同步请求   
 				dataType: "json",
-				data: {type:type},
 				success: function(data) {
 					callback(data.result);
 				}
