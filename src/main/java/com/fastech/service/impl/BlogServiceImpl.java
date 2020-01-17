@@ -56,7 +56,6 @@ public class BlogServiceImpl implements BlogService {
 
 	private Blog getBlogMap(Map<String, Object> inputMap) {
 		Blog b = new Blog();
-//		blogtheme
 		b.setBlogname(inputMap.get("blogname").toString());
 		b.setBlogtheme(Integer.valueOf(inputMap.get("blogtheme").toString()));
 		b.setBlogcontent(inputMap.get("blogcontent").toString());

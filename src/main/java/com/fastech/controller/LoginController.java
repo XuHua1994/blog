@@ -52,4 +52,11 @@ public class LoginController {
 
         return commonResult;
     }
+
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public Return loginTest() {
+
+        return new Return();
+    }
+
 }
