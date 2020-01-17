@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fastech.dao.RemarkDAO">
+
+	<insert id="insertRemark" parameterType="com.fastech.entity.Remark">
+        insert t_blog_remark (id,blogid,remarkid,remark,createtime) values
+       (#{id,jdbcType=VARCHAR},#{blogid,jdbcType=VARCHAR},#{remarkid,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},
+       #{createtime, jdbcType=TIMESTAMP})
+    </insert>
+    
+    <select id="getRemarkById" resultType="com.fastech.entity.vo.RemarkVO">
+		SELECT
+			t.*, t1.username remarkname
+		FROM
+			t_blog_remark t
+		LEFT JOIN t_user t1 ON t1.id = t.remarkid
+		WHERE
+		t.blogid=#{blogid}
+		ORDER BY
+			createtime DESC
+	</select>
+</mapper>

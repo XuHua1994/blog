@@ -1,0 +1,10 @@
+.btn{
+	color:#fff !important;
+	padding:1px 4px 1px 9px;
+	background-color: rgb(76, 138, 235);
+}
+	
+.datagrid-row-selected{
+    background: #ccc;/*自定义颜色*/
+    color:#000;
+}
