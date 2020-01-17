@@ -55,7 +55,7 @@ public class LoginController {
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public Return loginTest() {
-
+        System.out.println("11111111111");
         return new Return();
     }
 
